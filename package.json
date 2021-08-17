@@ -4,7 +4,7 @@
   "description": "Parsing rules for vim/neovim help files",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tree-sitter test"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/dimus/tree-sitter-vim-help/issues"
   },
-  "homepage": "https://github.com/dimus/tree-sitter-vim-help#readme"
+  "homepage": "https://github.com/dimus/tree-sitter-vim-help#readme",
+  "dependencies": {
+    "nan": "^2.15.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.20.0"
+  }
 }
