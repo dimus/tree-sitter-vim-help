@@ -1,0 +1,26 @@
+{
+  "name": "tree-sitter-vim-help",
+  "version": "1.0.0",
+  "description": "Parsing rules for vim/neovim help files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/dimus/tree-sitter-vim-help.git"
+  },
+  "keywords": [
+    "tree-sitter",
+    "vim",
+    "neovim",
+    "help",
+    "grammar"
+  ],
+  "author": "Dmitry Mozzherin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dimus/tree-sitter-vim-help/issues"
+  },
+  "homepage": "https://github.com/dimus/tree-sitter-vim-help#readme"
+}
