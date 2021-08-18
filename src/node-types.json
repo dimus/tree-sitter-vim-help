@@ -1,0 +1,102 @@
+[
+  {
+    "type": "file_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "target",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "header",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_name",
+          "named": true
+        },
+        {
+          "type": "header_separator",
+          "named": true
+        },
+        {
+          "type": "summary",
+          "named": true
+        },
+        {
+          "type": "vim_manual",
+          "named": true
+        },
+        {
+          "type": "vim_name",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "header",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "summary",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "link",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "\n",
+    "named": false
+  },
+  {
+    "type": "header_separator",
+    "named": true
+  },
+  {
+    "type": "link",
+    "named": true
+  },
+  {
+    "type": "target",
+    "named": true
+  },
+  {
+    "type": "vim_manual",
+    "named": true
+  },
+  {
+    "type": "vim_name",
+    "named": true
+  }
+]

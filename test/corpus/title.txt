@@ -1,0 +1,24 @@
+====================
+Title 
+====================
+
+*usr_27.txt*	Nvim
+
+		     VIM USER MANUAL - by Bram Moolenaar
+
+			       Search commands and patterns
+
+In chapter 3 a few simple search patterns were mentioned |03.9|.  Vim can do
+much more complex searches.  This chapter explains the most often used ones.
+A detailed specification can be found here: |pattern|
+
+==============================================================================
+
+----
+
+(source_file
+  (header (file_name (target)) (vim_name) (manual_title)
+  (summary) (summary (link)) (summary) (summary (link))
+  (header_separator)
+  )
+)

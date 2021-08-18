@@ -1,0 +1,110 @@
+{
+  "name": "VimHelp",
+  "rules": {
+    "source_file": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "header"
+        }
+      ]
+    },
+    "header": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "file_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "vim_name"
+        },
+        {
+          "type": "STRING",
+          "value": "\n"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "vim_manual"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "REPEAT",
+              "content": {
+                "type": "SYMBOL",
+                "name": "summary"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "header_separator"
+        }
+      ]
+    },
+    "target": {
+      "type": "PATTERN",
+      "value": "\\*[^*]+\\*"
+    },
+    "link": {
+      "type": "PATTERN",
+      "value": "\\|[^\\|]+\\|"
+    },
+    "file_name": {
+      "type": "SYMBOL",
+      "name": "target"
+    },
+    "vim_name": {
+      "type": "PATTERN",
+      "value": "[FVN].*"
+    },
+    "vim_manual": {
+      "type": "PATTERN",
+      "value": "VIM .*"
+    },
+    "summary": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "REPEAT1",
+        "content": {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "PATTERN",
+              "value": "[\\.A-Za-z][^\\|]+"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "link"
+            }
+          ]
+        }
+      }
+    },
+    "header_separator": {
+      "type": "PATTERN",
+      "value": "==[=]+"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+

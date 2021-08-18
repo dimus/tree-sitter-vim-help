@@ -2,7 +2,7 @@
   "name": "tree-sitter-vim-help",
   "version": "1.0.0",
   "description": "Parsing rules for vim/neovim help files",
-  "main": "index.js",
+  "main": "bindings/node",
   "scripts": {
     "test": "tree-sitter test"
   },
