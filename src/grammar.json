@@ -27,7 +27,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "vim_manual"
+          "name": "manual_title"
         },
         {
           "type": "CHOICE",
@@ -50,6 +50,10 @@
         }
       ]
     },
+    "header_separator": {
+      "type": "PATTERN",
+      "value": "==[=]+"
+    },
     "target": {
       "type": "PATTERN",
       "value": "\\*[^*]+\\*"
@@ -66,7 +70,7 @@
       "type": "PATTERN",
       "value": "[FVN].*"
     },
-    "vim_manual": {
+    "manual_title": {
       "type": "PATTERN",
       "value": "VIM .*"
     },
@@ -89,10 +93,6 @@
           ]
         }
       }
-    },
-    "header_separator": {
-      "type": "PATTERN",
-      "value": "==[=]+"
     }
   },
   "extras": [

@@ -18,12 +18,12 @@
 
 enum {
   anon_sym_LF = 1,
-  sym_target = 2,
-  sym_link = 3,
-  sym_vim_name = 4,
-  sym_vim_manual = 5,
-  aux_sym_summary_token1 = 6,
-  sym_header_separator = 7,
+  sym_header_separator = 2,
+  sym_target = 3,
+  sym_link = 4,
+  sym_vim_name = 5,
+  sym_manual_title = 6,
+  aux_sym_summary_token1 = 7,
   sym_source_file = 8,
   sym_header = 9,
   sym_file_name = 10,
@@ -35,12 +35,12 @@ enum {
 static const char * const ts_symbol_names[] = {
   [ts_builtin_sym_end] = "end",
   [anon_sym_LF] = "\n",
+  [sym_header_separator] = "header_separator",
   [sym_target] = "target",
   [sym_link] = "link",
   [sym_vim_name] = "vim_name",
-  [sym_vim_manual] = "vim_manual",
+  [sym_manual_title] = "manual_title",
   [aux_sym_summary_token1] = "summary_token1",
-  [sym_header_separator] = "header_separator",
   [sym_source_file] = "source_file",
   [sym_header] = "header",
   [sym_file_name] = "file_name",
@@ -52,12 +52,12 @@ static const char * const ts_symbol_names[] = {
 static const TSSymbol ts_symbol_map[] = {
   [ts_builtin_sym_end] = ts_builtin_sym_end,
   [anon_sym_LF] = anon_sym_LF,
+  [sym_header_separator] = sym_header_separator,
   [sym_target] = sym_target,
   [sym_link] = sym_link,
   [sym_vim_name] = sym_vim_name,
-  [sym_vim_manual] = sym_vim_manual,
+  [sym_manual_title] = sym_manual_title,
   [aux_sym_summary_token1] = aux_sym_summary_token1,
-  [sym_header_separator] = sym_header_separator,
   [sym_source_file] = sym_source_file,
   [sym_header] = sym_header,
   [sym_file_name] = sym_file_name,
@@ -75,6 +75,10 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = false,
   },
+  [sym_header_separator] = {
+    .visible = true,
+    .named = true,
+  },
   [sym_target] = {
     .visible = true,
     .named = true,
@@ -87,17 +91,13 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [sym_vim_manual] = {
+  [sym_manual_title] = {
     .visible = true,
     .named = true,
   },
   [aux_sym_summary_token1] = {
     .visible = false,
     .named = false,
-  },
-  [sym_header_separator] = {
-    .visible = true,
-    .named = true,
   },
   [sym_source_file] = {
     .visible = true,
@@ -141,10 +141,10 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (eof) ADVANCE(15);
       if (lookahead == '*') ADVANCE(12);
       if (lookahead == '=') ADVANCE(6);
-      if (lookahead == 'V') ADVANCE(20);
+      if (lookahead == 'V') ADVANCE(21);
       if (lookahead == '|') ADVANCE(13);
       if (lookahead == 'F' ||
-          lookahead == 'N') ADVANCE(22);
+          lookahead == 'N') ADVANCE(23);
       if (lookahead == '\t' ||
           lookahead == '\n' ||
           lookahead == '\r' ||
@@ -157,10 +157,10 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == ' ') SKIP(1)
       END_STATE();
     case 2:
-      if (lookahead == ' ') ADVANCE(23);
+      if (lookahead == ' ') ADVANCE(24);
       END_STATE();
     case 3:
-      if (lookahead == '*') ADVANCE(17);
+      if (lookahead == '*') ADVANCE(18);
       if (lookahead != 0) ADVANCE(3);
       END_STATE();
     case 4:
@@ -175,7 +175,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           ('a' <= lookahead && lookahead <= 'z')) ADVANCE(14);
       END_STATE();
     case 5:
-      if (lookahead == '=') ADVANCE(25);
+      if (lookahead == '=') ADVANCE(17);
       END_STATE();
     case 6:
       if (lookahead == '=') ADVANCE(5);
@@ -194,13 +194,13 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           lookahead == ' ') SKIP(9)
       END_STATE();
     case 10:
-      if (lookahead == '|') ADVANCE(18);
+      if (lookahead == '|') ADVANCE(19);
       if (lookahead != 0) ADVANCE(10);
       END_STATE();
     case 11:
       if (lookahead == 'F' ||
           lookahead == 'N' ||
-          lookahead == 'V') ADVANCE(22);
+          lookahead == 'V') ADVANCE(23);
       if (lookahead == '\t' ||
           lookahead == '\n' ||
           lookahead == '\r' ||
@@ -216,7 +216,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       END_STATE();
     case 14:
       if (lookahead != 0 &&
-          lookahead != '|') ADVANCE(24);
+          lookahead != '|') ADVANCE(25);
       END_STATE();
     case 15:
       ACCEPT_TOKEN(ts_builtin_sym_end);
@@ -226,47 +226,47 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '\n') ADVANCE(16);
       END_STATE();
     case 17:
-      ACCEPT_TOKEN(sym_target);
+      ACCEPT_TOKEN(sym_header_separator);
+      if (lookahead == '=') ADVANCE(17);
       END_STATE();
     case 18:
-      ACCEPT_TOKEN(sym_link);
+      ACCEPT_TOKEN(sym_target);
       END_STATE();
     case 19:
-      ACCEPT_TOKEN(sym_vim_name);
-      if (lookahead == ' ') ADVANCE(22);
-      if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(22);
+      ACCEPT_TOKEN(sym_link);
       END_STATE();
     case 20:
       ACCEPT_TOKEN(sym_vim_name);
-      if (lookahead == 'I') ADVANCE(21);
+      if (lookahead == ' ') ADVANCE(23);
       if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(22);
+          lookahead != '\n') ADVANCE(23);
       END_STATE();
     case 21:
       ACCEPT_TOKEN(sym_vim_name);
-      if (lookahead == 'M') ADVANCE(19);
+      if (lookahead == 'I') ADVANCE(22);
       if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(22);
+          lookahead != '\n') ADVANCE(23);
       END_STATE();
     case 22:
       ACCEPT_TOKEN(sym_vim_name);
+      if (lookahead == 'M') ADVANCE(20);
       if (lookahead != 0 &&
-          lookahead != '\n') ADVANCE(22);
+          lookahead != '\n') ADVANCE(23);
       END_STATE();
     case 23:
-      ACCEPT_TOKEN(sym_vim_manual);
+      ACCEPT_TOKEN(sym_vim_name);
       if (lookahead != 0 &&
           lookahead != '\n') ADVANCE(23);
       END_STATE();
     case 24:
-      ACCEPT_TOKEN(aux_sym_summary_token1);
+      ACCEPT_TOKEN(sym_manual_title);
       if (lookahead != 0 &&
-          lookahead != '|') ADVANCE(24);
+          lookahead != '\n') ADVANCE(24);
       END_STATE();
     case 25:
-      ACCEPT_TOKEN(sym_header_separator);
-      if (lookahead == '=') ADVANCE(25);
+      ACCEPT_TOKEN(aux_sym_summary_token1);
+      if (lookahead != 0 &&
+          lookahead != '|') ADVANCE(25);
       END_STATE();
     default:
       return false;
@@ -294,11 +294,11 @@ static const TSLexMode ts_lex_modes[STATE_COUNT] = {
 static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [0] = {
     [ts_builtin_sym_end] = ACTIONS(1),
+    [sym_header_separator] = ACTIONS(1),
     [sym_target] = ACTIONS(1),
     [sym_link] = ACTIONS(1),
     [sym_vim_name] = ACTIONS(1),
-    [sym_vim_manual] = ACTIONS(1),
-    [sym_header_separator] = ACTIONS(1),
+    [sym_manual_title] = ACTIONS(1),
   },
   [1] = {
     [sym_source_file] = STATE(8),
@@ -310,11 +310,11 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
 
 static const uint16_t ts_small_parse_table[] = {
   [0] = 4,
-    ACTIONS(7), 1,
+    ACTIONS(5), 1,
       sym_header_separator,
     STATE(5), 1,
       aux_sym_summary_repeat1,
-    ACTIONS(5), 2,
+    ACTIONS(7), 2,
       sym_link,
       aux_sym_summary_token1,
     STATE(3), 2,
@@ -325,18 +325,18 @@ static const uint16_t ts_small_parse_table[] = {
       sym_header_separator,
     STATE(5), 1,
       aux_sym_summary_repeat1,
-    ACTIONS(5), 2,
+    ACTIONS(7), 2,
       sym_link,
       aux_sym_summary_token1,
     STATE(4), 2,
       sym_summary,
       aux_sym_header_repeat1,
   [30] = 4,
-    ACTIONS(14), 1,
+    ACTIONS(11), 1,
       sym_header_separator,
     STATE(5), 1,
       aux_sym_summary_repeat1,
-    ACTIONS(11), 2,
+    ACTIONS(13), 2,
       sym_link,
       aux_sym_summary_token1,
     STATE(4), 2,
@@ -346,15 +346,15 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(6), 1,
       aux_sym_summary_repeat1,
     ACTIONS(16), 3,
+      sym_header_separator,
       sym_link,
       aux_sym_summary_token1,
-      sym_header_separator,
   [54] = 3,
-    ACTIONS(21), 1,
+    ACTIONS(18), 1,
       sym_header_separator,
     STATE(6), 1,
       aux_sym_summary_repeat1,
-    ACTIONS(18), 2,
+    ACTIONS(20), 2,
       sym_link,
       aux_sym_summary_token1,
   [65] = 1,
@@ -374,7 +374,7 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_LF,
   [85] = 1,
     ACTIONS(33), 1,
-      sym_vim_manual,
+      sym_manual_title,
   [89] = 1,
     ACTIONS(35), 1,
       ts_builtin_sym_end,
@@ -403,14 +403,14 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [0] = {.entry = {.count = 0, .reusable = false}},
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
   [3] = {.entry = {.count = 1, .reusable = true}}, SHIFT(7),
-  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(5),
-  [7] = {.entry = {.count = 1, .reusable = true}}, SHIFT(13),
+  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(13),
+  [7] = {.entry = {.count = 1, .reusable = true}}, SHIFT(5),
   [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(14),
-  [11] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_header_repeat1, 2), SHIFT_REPEAT(5),
-  [14] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_header_repeat1, 2),
+  [11] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_header_repeat1, 2),
+  [13] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_header_repeat1, 2), SHIFT_REPEAT(5),
   [16] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_summary, 1),
-  [18] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_summary_repeat1, 2), SHIFT_REPEAT(6),
-  [21] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_summary_repeat1, 2),
+  [18] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_summary_repeat1, 2),
+  [20] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_summary_repeat1, 2), SHIFT_REPEAT(6),
   [23] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_file_name, 1),
   [25] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
   [27] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_source_file, 1),

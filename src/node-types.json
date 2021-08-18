@@ -31,11 +31,11 @@
           "named": true
         },
         {
-          "type": "summary",
+          "type": "manual_title",
           "named": true
         },
         {
-          "type": "vim_manual",
+          "type": "summary",
           "named": true
         },
         {
@@ -88,11 +88,11 @@
     "named": true
   },
   {
-    "type": "target",
+    "type": "manual_title",
     "named": true
   },
   {
-    "type": "vim_manual",
+    "type": "target",
     "named": true
   },
   {
