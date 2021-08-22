@@ -14,35 +14,28 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "file_name"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "target"
+          },
+          "named": true,
+          "value": "file_name"
         },
         {
           "type": "SYMBOL",
           "name": "vim_name"
         },
         {
-          "type": "STRING",
-          "value": "\n"
-        },
-        {
           "type": "SYMBOL",
           "name": "manual_title"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "REPEAT",
-              "content": {
-                "type": "SYMBOL",
-                "name": "summary"
-              }
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "summary"
+          }
         },
         {
           "type": "SYMBOL",
@@ -61,10 +54,6 @@
     "link": {
       "type": "PATTERN",
       "value": "\\|[^\\|]+\\|"
-    },
-    "file_name": {
-      "type": "SYMBOL",
-      "name": "target"
     },
     "vim_name": {
       "type": "PATTERN",

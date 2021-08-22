@@ -1,5 +1,5 @@
 ====================
-Title 
+Header
 ====================
 
 *usr_27.txt*	Nvim
@@ -17,8 +17,9 @@ A detailed specification can be found here: |pattern|
 ----
 
 (source_file
-  (header (file_name (target)) (vim_name) (manual_title)
-  (summary) (summary (link)) (summary) (summary (link))
-  (header_separator)
+  (header 
+    (file_name) (vim_desc) (manual_title)
+    (summary) (summary (link)) (summary) (summary (link))
+    (header_separator)
   )
 )

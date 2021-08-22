@@ -11,12 +11,19 @@ module.exports = grammar({
 
   rules: {
     source_file: $ => seq($.header),
-    header: $ => seq($.file_name, $.vim_name, newline, $.manual_title, optional(repeat($.summary)), $.header_separator),
+
+    header: $ => seq(
+      alias($.target, $.file_name),
+      $.vim_desc,
+      $.manual_title,
+      repeat($.summary),
+      $.header_separator
+    ),
+
     header_separator: $ => /==[=]+/,
     target: $ => /\*[^*]+\*/,
     link: $ => /\|[^\|]+\|/,
-    file_name: $ => $.target,
-    vim_name: $ => /[FVN].*/,
+    vim_desc: $ => seq(choice('Vim','Nvim', For Vim'), /.*/)),
     manual_title: $ => /VIM .*/,
     summary: $ => prec.left(repeat1(choice(/[\.A-Za-z][^\|]+/, $.link)))
   }

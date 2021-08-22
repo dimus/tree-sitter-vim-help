@@ -1,20 +1,5 @@
 [
   {
-    "type": "file_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "target",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "header",
     "named": true,
     "fields": {},
@@ -76,8 +61,8 @@
     }
   },
   {
-    "type": "\n",
-    "named": false
+    "type": "file_name",
+    "named": true
   },
   {
     "type": "header_separator",
@@ -89,10 +74,6 @@
   },
   {
     "type": "manual_title",
-    "named": true
-  },
-  {
-    "type": "target",
     "named": true
   },
   {
